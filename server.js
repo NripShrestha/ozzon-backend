@@ -12,6 +12,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.set("trust proxy", 1);
 
 // 🔐 Security Middleware
 app.use(helmet());
@@ -32,7 +33,6 @@ app.use((req, res, next) => {
   req.params = mongoSanitize(req.params);
   next();
 });
-
 
 // 🌍 Enable CORS
 app.use(cors());
