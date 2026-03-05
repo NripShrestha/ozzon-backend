@@ -14,20 +14,24 @@ const productSchema = mongoose.Schema(
     description: { type: String },
     specifications: { type: String },
 
-    // Array of feature strings e.g. ["Full synthetic formula", "Superior engine protection"]
     features: [{ type: String }],
 
     price: { type: Number },
+
+    // Primary image (kept for backward compatibility)
     image: {
-      url: {
-        type: String,
-        required: true,
-      },
-      public_id: {
-        type: String,
-        required: true,
-      },
+      url: { type: String, required: true },
+      public_id: { type: String, required: true },
     },
+
+    // Additional images array
+    images: [
+      {
+        url: { type: String, required: true },
+        public_id: { type: String, required: true },
+      },
+    ],
+
     stock: { type: Number, default: 0 },
   },
   { timestamps: true },
